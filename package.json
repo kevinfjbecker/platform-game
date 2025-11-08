@@ -1,0 +1,25 @@
+{
+  "name": "platform-game",
+  "version": "0.0.0",
+  "description": "A work-through chapter 16 Project: A Platform Game from Eloquent JavaScript",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinfjbecker/platform-game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kevinfjbecker/platform-game/issues"
+  },
+  "homepage": "https://github.com/kevinfjbecker/platform-game#readme",
+  "devDependencies": {
+    "vite": "^7.1.7",
+    "vite-plugin-restart": "^2.0.0"
+  }
+}
