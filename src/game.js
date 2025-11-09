@@ -290,7 +290,7 @@ Lava.prototype.update = function (time, state) {
 }
 
 const wobbleSpeed = 8
-const wobbleDist = 0.7
+const wobbleDist = 0.07
 
 Coin.prototype.update = function (time) {
     let wobble = this.wobble + time * wobbleSpeed
@@ -317,7 +317,7 @@ Player.prototype.update = function (time, state, keys) {
     }
 
     let ySpeed = this.speed.y + time * gravity
-    let movedY = pos.plus(new Vec(0, xSpeed * time))
+    let movedY = pos.plus(new Vec(0, ySpeed * time))
     if (!state.level.touches(movedY, this.size, 'wall')) {
         pos = movedY
     } else if (keys.ArrowUp && ySpeed > 0) {
@@ -341,7 +341,7 @@ function trackKeys(keys) {
     return down
 }
 
-const arrowKeys = trackKeys(['ArrowLeft', 'ArrowRight, ArrowUp'])
+const arrowKeys = trackKeys(['ArrowLeft', 'ArrowRight', 'ArrowUp'])
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -365,8 +365,12 @@ function runLevel(level, Display) {
 
     return new Promise(resolve => {
         runAnimation(time => {
+
+            // console.log(arrowKeys) // debug
+
             state = state.update(time, arrowKeys)
             display.syncState(state)
+
             if (state.status == 'playing') {
                 return true
             } else if (ending > 0) {
