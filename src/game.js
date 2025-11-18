@@ -1,3 +1,51 @@
+
+///////////////////////////////////////////////////////////////////////////////
+
+import { analog } from './controls/analog.js'
+import { button } from './controls/button.js'
+import TouchController from './controls/touch.js'
+
+///////////////////////////////////////////////////////////////////////////////
+
+const fullscreenDiv = document.querySelector('div.full-screen')
+const canvas = document.querySelector('canvas')
+
+const width = fullscreenDiv.offsetWidth
+const height = fullscreenDiv.offsetHeight
+
+canvas.width = width
+canvas.height = height
+
+const ctx = canvas.getContext('2d')
+
+///////////////////////////////////////////////////////////////////////////////
+
+const analogCenter = {
+    x: 95,
+    y: height - 95
+}
+
+const analogControl = analog(analogCenter)
+
+///////////////////////////////////////////////////////////////////////////////
+
+const butonCenter = {
+    x: width - 95,
+    y: height - 95
+}
+
+const buttonControl = button(butonCenter)
+
+///////////////////////////////////////////////////////////////////////////////
+
+const touchController = new TouchController(
+    canvas,
+    analogControl,
+    buttonControl
+)
+
+///////////////////////////////////////////////////////////////////////////////
+
 // src: https://eloquentjavascript.net/16_game.html
 
 /*
@@ -566,6 +614,11 @@ function runLevel(level, Display) {
 
     return new Promise(resolve => {
         runAnimation(time => {
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            buttonControl.draw(ctx)
+            analogControl.draw(ctx)
+
             state = state.update(time, arrowKeys)
             display.syncState(state)
 
