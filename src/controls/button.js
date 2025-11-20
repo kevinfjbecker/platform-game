@@ -67,6 +67,8 @@ export const button = (center) => {
 
     }
 
+    const getState = () => ! idle
+
     const input = (contactPoint) => {
         idle = false
     }
@@ -80,6 +82,7 @@ export const button = (center) => {
     return {
         contact,
         draw,
+        getState,
         input,
         release
     }

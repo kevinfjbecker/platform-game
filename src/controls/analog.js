@@ -24,6 +24,8 @@ export const analog = (center) => {
     let stickX = center.x
     let stickY = center.y
 
+    let stickNormal = { x: 0, y: 0 }
+
     ///////////////////////////////////////////////////////////////////
 
     const contact = (contactPoint) => {
@@ -67,6 +69,8 @@ export const analog = (center) => {
         ctx.restore()
     }
 
+    const getState = () => stickNormal
+
     const input = (contactPoint) => {
 
         idle = false
@@ -74,7 +78,7 @@ export const analog = (center) => {
         const stickVector = sub(contactPoint, center)
         const stickDist = length(stickVector)
 
-        const stickNormal = normal(stickVector)
+        stickNormal = normal(stickVector)
         const stickScaled = scale(stickNormal, maxStickDist)
         const stickClamped = add(stickScaled, center)
 
@@ -86,8 +90,6 @@ export const analog = (center) => {
             stickX = contactPoint.x
             stickY = contactPoint.y
         }
-
-        console.log(stickNormal)
 
     }
 
@@ -102,6 +104,7 @@ export const analog = (center) => {
     return {
         contact,
         draw,
+        getState,
         input,
         release
     }

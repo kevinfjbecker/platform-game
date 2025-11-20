@@ -46,6 +46,23 @@ const touchController = new TouchController(
 
 ///////////////////////////////////////////////////////////////////////////////
 
+let setAction = () => { } // no op
+
+const activateTouchControls = (e) => {
+
+    setAction = () => {
+        arrowKeys.ArrowLeft = analogControl.getState().x < -0.5
+        arrowKeys.ArrowRight = analogControl.getState().x > 0.5
+        arrowKeys.ArrowUp = buttonControl.getState()
+    }
+
+    e.target.removeEventListener('touchstart', activateTouchControls)
+}
+
+canvas.addEventListener('touchstart', activateTouchControls)
+
+///////////////////////////////////////////////////////////////////////////////
+
 // src: https://eloquentjavascript.net/16_game.html
 
 /*
@@ -618,7 +635,7 @@ function runLevel(level, Display) {
             ctx.clearRect(0, 0, canvas.width, canvas.height)
             touchController.draw(ctx)
 
-            // console.log(arrowKeys)
+            setAction() // update arrowKeys if use touch controls
 
             state = state.update(time, arrowKeys)
             display.syncState(state)
