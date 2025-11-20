@@ -97,6 +97,7 @@ export const analog = (center) => {
         idle = true
         stickX = center.x
         stickY = center.y
+        stickNormal = { x: 0, y: 0 }
     }
 
     ///////////////////////////////////////////////////////////////////
