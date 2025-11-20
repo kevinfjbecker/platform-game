@@ -616,8 +616,9 @@ function runLevel(level, Display) {
         runAnimation(time => {
 
             ctx.clearRect(0, 0, canvas.width, canvas.height)
-            buttonControl.draw(ctx)
-            analogControl.draw(ctx)
+            touchController.draw(ctx)
+
+            // console.log(arrowKeys)
 
             state = state.update(time, arrowKeys)
             display.syncState(state)

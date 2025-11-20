@@ -15,33 +15,13 @@ export default class TouchController {
         this.canvas.addEventListener("touchmove", this.handleTouchMove)
         canvas.addEventListener("touchend", this.handleTouchEnd)
 
-        // // todo: put this somewhere
-        // this.canvas.addEventListener('touchstart', (event) => {
-        //     event.preventDefault()
-        //     const x = event.touches[0].clientX
-        //     const y = event.touches[0].clientY
-        //     if (analogControl.contact({ x, y })) {
-        //         this.startDrag(event, analogControl)
-        //     }
-        // })
+    }
 
-        // // todo: put this somewhere too
-        // this.canvas.addEventListener('touchstart', (event) => {
-        //     event.preventDefault()
-        //     const touch = event.changedTouches[0]
-        //     const x = event.touches[0].clientX
-        //     const y = event.touches[0].clientY
-        //     if (buttonControl.contact({ x, y })) {
-        //         if (this.touchesTargets.length === 0) {
-        //             canvas.addEventListener("touchend", this.buttonUp)
-        //         }
-        //         this.touchesTargets.push({
-        //             target: buttonControl,
-        //             touchIdentifier: touch.identifier,
-        //         })
-        //         buttonControl.input({ x, y })
-        //     }
-        // })
+    ///////////////////////////////////////////////////////////////////////////
+
+    draw = (context) => {
+        this.analogControl.draw(context)
+        this.buttonControl.draw(context)
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -57,7 +37,7 @@ export default class TouchController {
             const touchTarget = this.touchesTargets.find(
                 (tt) => tt.touchIdentifier === touchIdentifier
             )
-            touchTarget.target.release()
+            touchTarget?.target.release()
         })
 
         this.touchesTargets =
@@ -79,7 +59,7 @@ export default class TouchController {
                 (tt) => tt.touchIdentifier === touch.identifier
             )
 
-            if (touchTarget.drag) {
+            if (touchTarget?.drag) {
                 const target = touchTarget.target
                 target.input({ x: touch.clientX, y: touch.clientY })
             }
@@ -116,92 +96,5 @@ export default class TouchController {
             this.buttonControl.input({ x, y })
         }
     }
-
-    ///////////////////////////////////////////////////////////////////////////
-
-    // startDrag = (event, target) => {
-
-    //     const touch = event.changedTouches[0]
-
-    //     if (this.touchesTargets.length === 0) {
-    //         this.canvas.addEventListener("touchmove", this.drag)
-    //         this.canvas.addEventListener("touchend", this.endDrag)
-    //     }
-
-    //     this.touchesTargets.push({
-    //         target,
-    //         touchIdentifier: touch.identifier,
-    //     })
-
-    //     target.input({ x: touch.clientX, y: touch.clientY })
-    // }
-
-    // drag = (event) => {
-
-    //     event.preventDefault()
-
-    //         ;[...event.changedTouches].forEach(touch => {
-    //             const touchTarget = this.touchesTargets.find(
-    //                 (tt) => tt.touchIdentifier === touch.identifier
-    //             )
-
-    //             const target = touchTarget.target
-
-    //             target.input({ x: touch.clientX, y: touch.clientY })
-    //         })
-    // }
-
-    // endDrag = (event) => {
-
-    //     const endingTouchIdentifiers =
-    //         [...event.changedTouches].map(t => t.identifier)
-
-    //     endingTouchIdentifiers.forEach((touchIdentifier) => {
-    //         const touchTarget = this.touchesTargets.find(
-    //             (tt) => tt.touchIdentifier === touchIdentifier
-    //         )
-    //         touchTarget.target.release()
-    //     })
-
-    //     this.touchesTargets =
-    //         this.touchesTargets
-    //             .filter(tt =>
-    //                 !endingTouchIdentifiers
-    //                     .some(eti => eti === tt.touchIdentifier)
-    //             )
-
-    //     if (this.touchesTargets.length === 0) {
-    //         this.canvas.removeEventListener('touchmove', this.drag)
-    //         this.canvas.removeEventListener('touchend', this.endDrag)
-    //     }
-
-    // }
-
-    ///////////////////////////////////////////////////////////////////////
-
-    // buttonUp = (event) => {
-
-    //     const endingTouchIdentifiers =
-    //         [...event.changedTouches].map(t => t.identifier)
-
-    //     endingTouchIdentifiers.forEach((touchIdentifier) => {
-    //         const touchTarget = this.touchesTargets.find(
-    //             (tt) => tt.touchIdentifier === touchIdentifier
-    //         )
-    //         touchTarget.target.release()
-    //     })
-
-    //     this.touchesTargets =
-    //         this.touchesTargets
-    //             .filter(tt =>
-    //                 !endingTouchIdentifiers
-    //                     .some(eti => eti === tt.touchIdentifier)
-    //             )
-
-    //     if (this.touchesTargets.length === 0) {
-    //         this.canvas.removeEventListener('touchend', this.buttonUp)
-    //     }
-
-    // }
 
 }

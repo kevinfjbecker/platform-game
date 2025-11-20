@@ -36,7 +36,7 @@ export const analog = (center) => {
 
         ctx.strokeStyle = 'white'
         ctx.fillStyle = 'rgba(0, 0, 0, 0)'
-        ctx.lineWidth = idle ? 1 : 3
+        ctx.lineWidth = idle ? 1 : 2
 
         ctx.beginPath()
         ctx.arc(
@@ -50,7 +50,7 @@ export const analog = (center) => {
         ctx.stroke()
         ctx.closePath()
 
-        ctx.lineWidth = idle ? 3 : 1
+        ctx.lineWidth = idle ? 2 : 1
 
         ctx.beginPath()
         ctx.arc(
@@ -86,6 +86,9 @@ export const analog = (center) => {
             stickX = contactPoint.x
             stickY = contactPoint.y
         }
+
+        console.log(stickNormal)
+
     }
 
     const release = () => {

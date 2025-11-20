@@ -31,10 +31,6 @@ export const button = (center) => {
             ctx.fillStyle = 'rgba(0, 0, 0, 0)'
             ctx.lineWidth = 1
 
-            // ctx.shadowColor = 'white'
-            // ctx.shadowOffsetX = 4
-            // ctx.shadowOffsetY = 4
-
             ctx.beginPath()
             ctx.roundRect(
                 buttonX,
@@ -46,28 +42,12 @@ export const button = (center) => {
             ctx.stroke()
             ctx.fill()
             ctx.closePath()
-
-            // ctx.shadowColor = 'rgba(0, 0, 0, 0)'
-            // ctx.shadowBlur = 0
-            // ctx.shadowOffsetX = 0
-            // ctx.shadowOffsetY = 0
-
-            // ctx.fillStyle = 'white'
-            // ctx.font = '32px sans-serif'
-            // ctx.textAlign = 'center'
-            // ctx.textBaseline = 'middle'
-            // ctx.fillText('Start', center.x, center.y + 3)
 
         } else {
 
             ctx.strokeStyle = 'white'
             ctx.fillStyle = 'rgba(0, 0, 0, 0)'
-            ctx.lineWidth = 3
-
-            // ctx.shadowColor = 'rgba(0, 0, 0, 0)'
-            // ctx.shadowBlur = 0
-            // ctx.shadowOffsetX = 0
-            // ctx.shadowOffsetY = 0
+            ctx.lineWidth = 2
 
             ctx.beginPath()
             ctx.roundRect(
@@ -80,12 +60,6 @@ export const button = (center) => {
             ctx.stroke()
             ctx.fill()
             ctx.closePath()
-
-            // ctx.fillStyle = 'grey'
-            // ctx.font = '32px sans-serif'
-            // ctx.textAlign = 'center'
-            // ctx.textBaseline = 'middle'
-            // ctx.fillText('Start', center.x, center.y + 3 + 4)
 
         }
 
