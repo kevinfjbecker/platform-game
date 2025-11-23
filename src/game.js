@@ -3,6 +3,7 @@
 
 import { analog } from './controls/analog.js'
 import { button } from './controls/button.js'
+import CanvasDisplay from './CanvasDisplay.js'
 import TouchController from './controls/touch.js'
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -625,7 +626,7 @@ function runAnimation(frameFunc) {
 ///////////////////////////////////////////////////////////////////////////////
 
 function runLevel(level, Display) {
-    let display = new Display(document.body, level)
+    let display = new Display(document.body, level, { scale })
     let state = State.start(level)
     let ending = 1
 
@@ -667,6 +668,6 @@ async function runGame(plans, Display) {
 ///////////////////////////////////////////////////////////////////////////////
 
 
-runGame(GAME_LEVELS, DOMDisplay)
+runGame(GAME_LEVELS, CanvasDisplay)
 
 ///////////////////////////////////////////////////////////////////////////////
