@@ -35,7 +35,7 @@ export default class CanvasDisplay {
 
 CanvasDisplay.prototype.syncState = function (state) {
     this.updateViewport(state)
-    this.clearDisplay(state.statue)
+    this.clearDisplay(state.status)
     this.drawBackground(state.level)
     this.drawActors(state.actors)
 }
@@ -107,7 +107,7 @@ function flipHorizontally(context, around) {
 }
 
 let playerSprites = document.createElement('img')
-playerSprites.src = 'img/player.png'
+playerSprites.src = './img/player.png'
 const playerXOverlap = 4
 
 CanvasDisplay.prototype.drawPlayer = function (player, x, y, width, height) {
